@@ -22,6 +22,11 @@ const displayCategories = (categories) =>{
     })
 }
 
+
+
+// display count
+const count =document.getElementById('count');
+
 // load details news
 
 const newsDetailsContainer = document.getElementById('news-details-container');
@@ -38,6 +43,7 @@ const loadNewsDetails = async(category_id) =>{
 }
 
 const displayNewsDetails=(newsDetails)=>{
+  count.innerText =newsDetails.length;
   newsDetailsContainer.textContent="";
     newsDetails.map((newsDetail)=>{
         const newsDetailDiv= document.createElement('div');
@@ -119,6 +125,7 @@ const loadModalNewsDetails = async(_id) =>{
 }
 
 const displayModalNewsDetails=(newsModalDetails)=>{
+  count.innerText =newsModalDetails.length;
   newsModalDetails.map((newsModalDetail)=>{
         const newsDetailModal= document.getElementById('modal-body');
    
