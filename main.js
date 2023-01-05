@@ -96,3 +96,63 @@ const toggleSpinner = isLoading => {
   }
 }
 
+
+
+// load details news in Modal
+let newsDetailsModalContainer = document.getElementById('news-details-modal-container');
+
+// let newsDetailsContainer = document.getElementById('news-details-container');
+const loadModalNewsDetails = async(_id) =>{
+    const modalNewsDetailsUrl =`https://openapi.programming-hero.com/api/news/${_id}`
+    console.log(modalNewsDetailsUrl)
+    const res = await fetch(modalNewsDetailsUrl);
+    const data = await res.json();
+    console.log(data.data);
+    displayModalNewsDetails(data.data);
+
+}
+
+const displayModalNewsDetails=(newsModalDetails)=>{
+  newsModalDetails.map((newsModalDetail)=>{
+        const newsDetailModal= document.getElementById('modal-body');
+   
+        newsDetailModal.innerHTML=`<div class="card mb-3">
+        <div class="card">   
+            <img
+              src="${newsModalDetail.image_url}"
+              class="img-fluid rounded-start card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">${newsModalDetail.title}</h5>
+              <p class="card-text">${newsModalDetail.details}...</p>
+                <div class="news-sub-info d-flex justify-content-between">
+                  <div class="author-description d-flex">
+                    <img class="rounded-circle" src="${newsModalDetail.author.img}" alt="" />
+                    <div>
+                      <h3>${newsModalDetail.author.name}</h3>
+                      <p>${newsModalDetail.author.published_date}</p>
+                    </div>
+                  </div>
+                  <div class="view-details d-flex align-items-center">
+                    <img src="https://img.icons8.com/ios/50/000000/visible--v1.png" />
+                    <p class="mb-1">${newsModalDetail.total_view}</p>
+                  </div>
+                  <div class="view-details d-flex align-items-center">
+                  <img src="https://img.icons8.com/3d-fluency/25/null/star.png"/>
+                    <p class="mb-1">${newsModalDetail.rating.number}</p>
+                  </div>
+                  
+                </div>
+            </div>
+        </div>
+      </div>`;
+      const modalFooter=document.getElementById('modal-footer')
+      newsDetailsModalContainer.insertBefore(newsDetailModal, modalFooter)
+     
+    })
+   
+}
+
+
+
