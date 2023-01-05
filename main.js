@@ -23,19 +23,22 @@ const displayCategories = (categories) =>{
 }
 
 // load details news
-let newsDetailsContainer = document.getElementById('news-details-container');
+
+const newsDetailsContainer = document.getElementById('news-details-container');
+
 const loadNewsDetails = async(category_id) =>{
     console.log(category_id)
     toggleSpinner(true)
     const allNewsInCategoryUrl =`https://openapi.programming-hero.com/api/news/category/0${category_id}`
     const res = await fetch(allNewsInCategoryUrl);
     const data = await res.json();
-    console.log(data.data);
+    console.log(allNewsInCategoryUrl);
     displayNewsDetails(data.data);
 
 }
 
 const displayNewsDetails=(newsDetails)=>{
+  newsDetailsContainer.textContent="";
     newsDetails.map((newsDetail)=>{
         const newsDetailDiv= document.createElement('div');
         // newsDetailDiv.classList.add('mx-auto')
@@ -85,6 +88,7 @@ const displayNewsDetails=(newsDetails)=>{
   //  stop loader
   toggleSpinner(false)
 }
+
 // spinner
 const toggleSpinner = isLoading => {
   const loaderSection = document.getElementById('spinner');
@@ -95,6 +99,8 @@ const toggleSpinner = isLoading => {
       loaderSection.classList.add('d-none');
   }
 }
+
+loadNewsDetails(8)
 
 
 
@@ -107,7 +113,7 @@ const loadModalNewsDetails = async(_id) =>{
     console.log(modalNewsDetailsUrl)
     const res = await fetch(modalNewsDetailsUrl);
     const data = await res.json();
-    console.log(data.data);
+    // console.log(data.data);
     displayModalNewsDetails(data.data);
 
 }
