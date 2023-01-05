@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="blogs">
+      <div class="blog">
+        <h3>Difference between var, let, const</h3>
+        <p>
+          The var keyword is the oldest way of declaring variables in JavaScript
+          and is supported by all browsers. The let and const keywords are newer
+          additions to the language and are not supported by older browsers.If
+          you need to support older browsers, you can use var instead of let or
+          const. If you don’t need to support older browsers, you can use let or
+          const. If you want your variable to be immutable, use const-
+        </p>
+        <ul>
+          <li>var is function-scoped while let and const are block-scoped.</li>
+          <li>
+            var variables can be reassigned while let and const variables can
+            not.
+          </li>
+          <li>
+            const variables are immutable while let and var variables are not.
+          </li>
+        </ul>
+      </div>
+      <div class="blog">
+        <h3>Arrow function Vs Normal Function</h3>
+        <p>
+          These days arrow functions are used in any JavaScript project, it is
+          one of the most used features that ES6 (version of JavaScript) offers.
+          It is very important and useful. Keep reading to see why… Arrow
+          Function Reducing Code Lines Let’s create a new regular function and
+          call it calc(a, b) function. This function can receive 2 parameters, a
+          and b. Now, let's make a simple calculation inside of it, something
+          like a+b. Let’s take a look at the example below:
+          <br />
+          <code> function calc(a, b){ return a+b; } </code>
+          <br />
+          Now, let’s do the same thing with the arrow function: const calc =
+          ()=>a+b; As you can see, with a regular function this simple function
+          takes 3 lines, in contrast to the arrow function that makes the same
+          thing with 1 line of code. Anonymous Function Arrow functions can be
+          very useful when passing an anonymous function by only typing the ()
+          chars and not the full word of function for example:
+          <br />
+          <code>
+            <pre>
+            // Regular function:
+            document.addEventListener('onClick',function(){
+            console.log("Clicked"); }); // Arrow function:
+            document.addEventListener('onClick',()=>console.log("Clicked"));
+          </pre
+            >
+          </code>
+          As you can see, it is a lot easier and understandable for us to read,
+          and of course, you can notice that the code is also shorter. The
+          Biggest & Important Difference So far we saw that arrow functions are
+          a shorter and nicer way to create the same function as regular
+          functions. But it is not yet the reason why it is so popular. Now I
+          will illustrate the biggest difference by example. Let’s assume we
+          have a Person class that contains a property of name and we want to
+          access this property from 2 different regular functions, let’s call
+          the first function _getName() and the second one _getName2(). Both
+          functions contain an inner function, _getName() function contains
+          arrow function and _getName2() contain regular function.
+          <br />
+          <code>
+            <pre>
+                class Person{ contractor(name){ this.name = name; } _getName(){
+                    setTimeout(()=>{ console.log(this.name); },1000) } _getName2(){
+                    setTimeout(function(){ console.log(this.name); },1000) } } 
+                    const p =new Person("Nissim Zarur"); p._getName(); //Will print "Nissim
+                    Zarur".
+                     p._getName2(); //Will print empty string
+            </pre>
+          </code>
+          As you can see in the example above, we create an instance of Person
+          and called to both functions, but what happens next? The function
+          _getName() printed the string “Nissim Zarur” and _getName2() not, why
+          did that happen? Here we can see the power of the arrow functions,
+          each arrow function contains the scope of the class, this way we have
+          access to the class properties, and if we use the regular function we
+          don’t. So how can we still access the property of the function with
+          regular function? We will have to use the bind method, let’s take a
+          look at the example below.
+          <br />
+          <code>
+            <pre>
+                _getName2(){ setTimeout(function(){ console.log(this.name);
+                }.bind(this),1000) }
+            </pre>
+          </code>
+          We need to attach the method bind() and pass to it this. the term this
+          means that we pass the all scope to the setTimeout function. Now you
+          understand why most people use the ES6 arrow function, it’s a lot
+          straightforward method.
+        </p>
+      </div>
+      <div class="blog">
+        <h3>Why will we use template String?</h3>
+        <p>
+          Template literals are literals delimited with backtick (`) characters,
+          allowing for multi-line strings, string interpolation with embedded
+          expressions, and special constructs called tagged templates. Template
+          literals are sometimes informally called template strings, because
+          they are used most commonly for string interpolation (to create
+          strings by doing substitution of placeholders). However, a tagged
+          template literal may not result in a string; it can be used with a
+          custom tag function to perform whatever operations you want on the
+          different parts of the template literal.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
