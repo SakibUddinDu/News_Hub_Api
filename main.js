@@ -44,6 +44,8 @@ const loadNewsDetails = async(category_id) =>{
 
 const displayNewsDetails=(newsDetails)=>{
   count.innerText =newsDetails.length;
+  newsDetails.sort((a, b) => b.total_view -a.total_view )
+  // console.log(newsDetails)
   newsDetailsContainer.textContent="";
     newsDetails.map((newsDetail)=>{
         const newsDetailDiv= document.createElement('div');
@@ -125,7 +127,7 @@ const loadModalNewsDetails = async(_id) =>{
 }
 
 const displayModalNewsDetails=(newsModalDetails)=>{
-  count.innerText =newsModalDetails.length;
+
   newsModalDetails.map((newsModalDetail)=>{
         const newsDetailModal= document.getElementById('modal-body');
    
